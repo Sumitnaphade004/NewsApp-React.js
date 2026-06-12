@@ -4,7 +4,7 @@ import React, { useState} from 'react'
 import NavBar from './components/NavBar';
 import News from './components/News';
 import {
-  BrowserRouter as Router,
+  HashRouter 
   Route,
   Routes
 } from "react-router-dom";
@@ -28,7 +28,7 @@ const App =()=> {
   }
 
     return (
-      <Router>
+      <HashRouter >
         <div>
           <NavBar showAlert={showAlert}/>
           <Alert alert={alert}/>
@@ -42,7 +42,7 @@ const App =()=> {
             <Route exact path='/technology' element={<News apikey={apikey}  key="technology" country="us" category="technology"/>}/>
           </Routes>
         </div>
-      </Router>
+      </HashRouter>
     )
 }
 
