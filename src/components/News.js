@@ -2,14 +2,12 @@ import React, { useEffect, useState} from 'react';
 import NewsItem from './NewsItem';
 import Spinner from './Spinner';
 import PropTypes from 'prop-types';
-import { useNavigate } from "react-router-dom";
 
 const News= (props)=> {
   
   const[articles, setArticles] = useState([]);
   const[loading, setLoading] = useState(true);
   
-  const navigate = useNavigate();
   const capitalize = (str)=>{
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -23,32 +21,28 @@ const News= (props)=> {
   }
   
   useEffect(()=>{
-    if(localStorage.getItem("token")){
-      showNews();
-    }else{
-      navigate("/login");
-    }
-    // eslint-disable-next-line 
+    showNews();
+    // eslint-disable-next-line
   },[])
   
   document.title = `${capitalize(props.category)} - NewsDaily`;
 
     return (
-      <>
-      <div className="container" style={{marginLeft: "9.5rem"}}>
+      <div className="container-fluid ">
         <h2 className='text-center'style={{marginTop: "2rem", marginBottom: "3rem"}}>NewsDaily - Top {capitalize(props.category)} Headlines</h2>
-        {loading && <Spinner/>}
-        <div className="container">
-        <div className="row">
+        {loading && (
+          <div className="d-flex justify-content-center">
+            <Spinner />
+          </div>
+        )}
+        <div className="row justify-content-around m-2">
           {articles.map((element)=>{
-            return  <div className="col-md-4" key={element.url} >
-               <NewsItem title={element.title?element.title:" "} description={element.description?element.description:" "} imgUrl={element.urlToImage} newsUrl={element.url} author={element.author?element.author:"Unknown"} publishedAt={element.publishedAt} />
+            return  <div className="col-md-3 d-flex justify-content-around mb-4" key={element.url} >
+              <NewsItem title={element.title?element.title:" "} description={element.description?element.description:" "} imgUrl={element.urlToImage} newsUrl={element.url} author={element.author?element.author:"Unknown"} publishedAt={element.publishedAt} />
             </div> 
           })}
         </div>
-        </div>
       </div>
-      </>
     )
 }
 

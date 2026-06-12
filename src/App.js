@@ -8,8 +8,6 @@ import {
   Route,
   Routes
 } from "react-router-dom";
-import Signup from './components/Signup';
-import Login from './components/Login';
 import Alert from './components/Alert';
 
 const App =()=> {
@@ -42,8 +40,6 @@ const App =()=> {
             <Route exact path='/science' element={<News apikey={apikey}  key="science" country="us" category="science"/>}/>
             <Route exact path='/sports' element={<News apikey={apikey}  key="sports" country="us" category="sports"/>}/>
             <Route exact path='/technology' element={<News apikey={apikey}  key="technology" country="us" category="technology"/>}/>
-            <Route exact path='/login' element={<Login showAlert={showAlert} />}/>
-            <Route exact path='/signup' element={<Signup showAlert={showAlert}/>}/>
           </Routes>
         </div>
       </Router>
